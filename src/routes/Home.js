@@ -1,6 +1,8 @@
 import React from 'react';
 import { Animated, Button, Easing, StyleSheet, Text, View } from 'react-native';
 
+import MyButton from 'src/components/MyButton';
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -44,10 +46,15 @@ class Home extends React.Component {
           <Text>Some Error Message</Text>
         </Animated.View>
 
-        <Button
+        <MyButton
+          title='Card Transition'
           onPress={() => this.props.navigation.navigate('Card')}
-          title="PRESS ME"
           style={styles.button}
+        />
+        <MyButton
+          title='Contextual Transition'
+          onPress={() => this.props.navigation.navigate('ButtonView')}
+          style={styles.myButton}
         />
       </View>
     );
@@ -58,6 +65,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center',
   },
   toast: {
     paddingTop: 50,
@@ -68,9 +76,13 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: 'lightgray',
-    padding: 30,
-    marginTop: 300,
+    marginTop: 100,
+    width: 200,
   },
+  myButton: {
+    marginTop: 50,
+    width: 200,
+  }
 });
 
 export default Home;
