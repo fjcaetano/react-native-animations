@@ -79,7 +79,7 @@ class Home extends React.Component {
             }],
           },
         ]}>
-          <Text>Some Error Message</Text>
+          <Text>I'm a toast! 🍞</Text>
         </Animated.View>
 
         <Animated.View style={{ opacity: this.state.buttonOpacity }}>
