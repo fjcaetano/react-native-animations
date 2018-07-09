@@ -18,6 +18,7 @@ class Home extends React.Component {
     this.state = {
       toastPosition: new Animated.Value(0),
       buttonPosition: new Animated.Value(0),
+      buttonOpacity: new Animated.Value(1),
     };
   }
   
@@ -49,6 +50,21 @@ class Home extends React.Component {
     }).start((() => this.state.buttonPosition.setValue(0)));
   };
 
+  startButtonFadeOut = () =>
+    Animated.sequence([
+      Animated.timing(this.state.buttonOpacity, {
+        toValue: 0,
+        duration: 0,
+        useNativeDriver: true
+      }),
+      Animated.timing(this.state.buttonOpacity, {
+        delay: 500,
+        toValue: 1,
+        duration: 500,
+        useNativeDriver: true,
+      })
+    ]).start()
+
   render() {
     return (
       <View style={styles.container}>
@@ -66,10 +82,18 @@ class Home extends React.Component {
           <Text>Some Error Message</Text>
         </Animated.View>
 
+        <Animated.View style={{ opacity: this.state.buttonOpacity }}>
+          <MyButton
+            title='Fade In'
+            onPress={this.startButtonFadeOut}
+            style={styles.button}
+          />
+        </Animated.View>
+
         <MyButton
           title='Card Transition'
           onPress={() => this.props.navigation.navigate('Card')}
-          style={styles.button}
+          style={styles.myButton}
         />
         <MyButton
           title='Contextual Transition'
